@@ -12,7 +12,7 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
   
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const url_local = import.meta.env.VITE_URL_LOCAL
+  const url_local = import.meta.env.VITE_URL_PROD
   const fetchPublicaciones = (url) => {
     setLoading(true)
     fetch(url)

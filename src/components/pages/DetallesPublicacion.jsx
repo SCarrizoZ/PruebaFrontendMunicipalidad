@@ -14,7 +14,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [publicacion, setPublicacion] = useState({})
-  const url_local = import.meta.env.VITE_URL_LOCAL
+  const url_local = import.meta.env.VITE_URL_PROD
   const url = `${url_local}${id}`
   const fetchPublicacion = (url) => {
     setLoading(true)
