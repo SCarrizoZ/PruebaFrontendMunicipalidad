@@ -2,7 +2,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 import { useState } from 'react'
-import TablaPublicaciones from './TablaPublicaciones'
+import TablaPublicaciones from '../TablaPublicaciones'
 
 export default function PublicacionesListado({
   isOpened,

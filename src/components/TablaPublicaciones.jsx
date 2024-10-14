@@ -3,13 +3,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
+import {Link} from 'react-router-dom';
+
 const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPage }) => {
   const [publicaciones, setPublicaciones] = useState([])
   const [nextPageUrl, setNextPageUrl] = useState(null)
   const [prevPageUrl, setPrevPageUrl] = useState(null)
+  
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
+  const url_local = import.meta.env.VITE_URL_LOCAL
   const fetchPublicaciones = (url) => {
     setLoading(true)
     fetch(url)
@@ -29,9 +32,9 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
 
   useEffect(() => {
     if (currentPage === 1) {
-      fetchPublicaciones('https://backend-dashboard-tau.vercel.app/publicaciones/')
+      fetchPublicaciones(url_local)
     } else {
-      fetchPublicaciones(`https://backend-dashboard-tau.vercel.app/publicaciones/?page=${currentPage}`)
+      fetchPublicaciones(`${url_local}?page=${currentPage}`)
     }
   }, [currentPage])
 
@@ -68,7 +71,12 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
         <TableBody>
           {publicaciones.map((pub) => (
             <TableRow key={pub.id}>
-              <TableCell>{pub.titulo}</TableCell>
+              <TableCell>
+                <Link to={`/publicacion/${pub.id}`}>
+                  {pub.titulo}
+                
+                </Link>
+              </TableCell>
               <TableCell>{pub.descripcion}</TableCell>
               <TableCell>{pub.situacion.nombre}</TableCell>
               <TableCell>{pub.categoria.nombre}</TableCell>
