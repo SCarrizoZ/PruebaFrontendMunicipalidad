@@ -28,9 +28,9 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
 
   useEffect(() => {
     if (currentPage === 1) {
-      fetchPublicaciones('http://34.237.37.83/publicaciones/')
+      fetchPublicaciones('https://backend-dashboard-tau.vercel.app/publicaciones/')
     } else {
-      fetchPublicaciones(`http://34.237.37.83/publicaciones/?page=${currentPage}`)
+      fetchPublicaciones(`https://backend-dashboard-tau.vercel.app/publicaciones/?page=${currentPage}`)
     }
   }, [currentPage])
 
