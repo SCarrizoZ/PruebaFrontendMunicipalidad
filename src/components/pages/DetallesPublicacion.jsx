@@ -15,7 +15,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
   const [error, setError] = useState(null)
   const [publicacion, setPublicacion] = useState({})
   const url_local = import.meta.env.VITE_URL_PROD
-  const url = `${"http://192.168.0.9:8080/publicaciones/"}${id}`
+  const url = `${"https://backend-dashboard-tau.vercel.app/publicaciones/"}${id}`
   const fetchPublicacion = (url) => {
     setLoading(true)
     fetch(url)
