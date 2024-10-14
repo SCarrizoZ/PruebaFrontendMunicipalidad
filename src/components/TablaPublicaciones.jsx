@@ -32,9 +32,9 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
 
   useEffect(() => {
     if (currentPage === 1) {
-      fetchPublicaciones(url_local)
+      fetchPublicaciones("http://192.168.0.9:8080/publicaciones/")
     } else {
-      fetchPublicaciones(`${url_local}?page=${currentPage}`)
+      fetchPublicaciones(`${"http://192.168.0.9:8080/publicaciones/"}?page=${currentPage}`)
     }
   }, [currentPage])
 
