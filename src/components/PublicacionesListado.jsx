@@ -22,7 +22,7 @@ export default function PublicacionesListado({
   return (
     <div className="content">
 
-      <div className="bg-[#00A86B] min-h-screen">
+      <div className="bg-[#00A86B] min-h-screen min-w-[400px]">
         <header className="burger-btn p-4 flex items-center">
           <button 
             onClick={handleOpenSidebar}
@@ -31,7 +31,7 @@ export default function PublicacionesListado({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <h1 className="text-white text-2xl font-bold">Listado de publicaciones</h1>
+          <h1 className="text-white text-3xl font-bold">Listado de publicaciones</h1>
         </header>
 
         <main className="bg-white m-4 p-6 rounded-lg shadow-md">

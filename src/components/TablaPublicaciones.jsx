@@ -15,9 +15,10 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
     fetch(url)
       .then(response => response.json())
       .then(data => {
+        console.log(data.results)
         setPublicaciones(data.results)
-        setNextPageUrl(data.next)
-        setPrevPageUrl(data.previous)
+        // setNextPageUrl(data.next)
+        // setPrevPageUrl(data.previous)
         setLoading(false)
       })
       .catch(error => {
@@ -35,10 +36,10 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
   }, [currentPage])
 
   const handleNextPage = () => {
-    if (nextPageUrl) {
+    
       setCurrentPage(currentPage + 1)
       fetchPublicaciones(nextPageUrl)
-    }
+    
   }
 
   const handlePrevPage = () => {
@@ -85,10 +86,14 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
           <Button variant="outline" size="icon" onClick={() => setCurrentPage(1)} disabled={!prevPageUrl}>
             <ChevronsLeft className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" onClick={handlePrevPage} disabled={!prevPageUrl}>
+          <Button variant="outline" size="icon" onClick={() => setCurrentPage(currentPage - 1)} disabled={
+            currentPage > 1 ? false : true
+          }>
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" onClick={handleNextPage} disabled={!nextPageUrl}>
+          <Button variant="outline" size="icon" onClick={() => setCurrentPage(currentPage + 1)} disabled={
+            currentPage < 50 ? false : true 
+           }>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button variant="outline" size="icon" onClick={() => setCurrentPage(currentPage + 1)} disabled={!nextPageUrl}>
