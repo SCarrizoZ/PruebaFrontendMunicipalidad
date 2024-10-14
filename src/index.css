@@ -29,6 +29,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --trans-03: all 0.3s ease;
+    
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -63,6 +64,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #00A86B;
   }
 }
 
@@ -76,6 +78,7 @@
   padding: 1rem;
   left: 0;
   transition: var(--trans-03);
+
 }
 .sidebar.closed{
   left: -250px;
@@ -111,7 +114,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* height: calc(100% - 60px); */
+  
   /* height: 100%; */
 }
 .menu .menu-list{
@@ -177,4 +180,29 @@
 .sidebar.closed ~ .content{
   width: calc(100% - 0px);
   left: 0;
+}
+
+@media only screen and (min-width: 480px){
+  .menu{
+    height: calc(100% - 60px);
+  }
+}
+
+@media only screen and (max-width: 480px){
+  .sidebar{
+    left: -250px;
+  }
+  .sidebar.closed{
+    left: 0px;
+  }
+  .content{
+    left: 0;
+    width: calc(100% - 0px);
+  }
+  .sidebar.closed ~ .content{
+    width: calc(100% - 250px);
+    left: 250px;
+  }
+
+  
 }

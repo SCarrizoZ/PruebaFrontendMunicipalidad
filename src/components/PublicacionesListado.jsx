@@ -20,7 +20,7 @@ export default function PublicacionesListado({
   }
 
   return (
-    <div className="content">
+    
 
       <div className="bg-[#00A86B] min-h-screen min-w-[400px]">
         <header className="burger-btn p-4 flex items-center">
@@ -107,6 +107,6 @@ export default function PublicacionesListado({
 
         </main>
       </div>
-    </div>
+  
   )
 }

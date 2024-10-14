@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/logotipo-muni.png'
+import { Link } from 'react-router-dom'
 const Sidebar = ({
   isOpened
 }) => {
@@ -15,20 +16,23 @@ const Sidebar = ({
       <div className="menu">
         <ul className="menu-list">
           <li class="nav-link">
-            <a href="#">
+            
+            <Link to="/dashboard">
               <i class="bx bx-pie-chart icon"></i>
               <span class="text nav-text">
                 Dashboard
               </span>
-            </a>
+            </Link>
           </li>
           <li class="nav-link">
-            <a href="#">
+            <Link to='/'>
               <i class="bx bx-file icon"></i>
               <span class="text nav-text">
                 Publicaciones
               </span>
-            </a>
+            </Link>
+
+            
           </li>
           <li class="nav-link">
             <a href="#">
