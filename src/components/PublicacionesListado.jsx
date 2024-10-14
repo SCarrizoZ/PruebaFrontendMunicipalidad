@@ -22,7 +22,7 @@ export default function PublicacionesListado({
   return (
     <div className="content">
 
-      <div className="bg-[#00a86a28] min-h-screen">
+      <div className="bg-[#00A86B] min-h-screen">
         <header className="burger-btn p-4 flex items-center">
           <button 
             onClick={handleOpenSidebar}
