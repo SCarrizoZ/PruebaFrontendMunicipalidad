@@ -41,7 +41,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
   }
   const [activeTab, setActiveTab] = useState('info')
   return (
-    <div className="bg-green-500 min-h-screen p-8">
+    <div className="bg-[#00A86B] min-h-screen p-8">
       <Card className="w-full max-w-4xl mx-auto bg-white">
         <CardHeader className="border-b">
           <div className="flex justify-between items-center mb-4">
@@ -77,13 +77,13 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
               </Button>
             </div>
           </div>
-          <CardTitle className="text-2xl text-green-700">{publicacion.titulo + ` (${publicacion.id})`}</CardTitle>
+          <CardTitle className="text-2xl text-green-700">{publicacion?.titulo + ` (${publicacion?.id})`}</CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
           {activeTab === 'info' && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
+              <div className="grid grid-cols-1  gap-6">
+                <Card className= "w-full mx-auto">
                   <CardHeader>
                     <CardTitle className="text-green-700">Información general</CardTitle>
                   </CardHeader>
@@ -112,7 +112,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
                     </dl>
                   </CardContent>
                 </Card>
-                <Card>
+                {/* <Card>
                   <CardHeader>
                     <CardTitle className="text-green-700">Detalles del proyecto</CardTitle>
                   </CardHeader>
@@ -140,7 +140,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
                       </div>
                     </dl>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
               <Card>
                 <CardHeader>
@@ -164,7 +164,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
           {activeTab === 'ubicacion' && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-green-700">Ubicación del proyecto</CardTitle>
+                <CardTitle className="text-green-700">Ubicación de la publicación</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="aspect-video bg-green-100 rounded-md overflow-hidden flex items-center justify-center">
@@ -180,7 +180,7 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
           {activeTab === 'evidencias' && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-green-700">Evidencias del proyecto</CardTitle>
+                <CardTitle className="text-green-700">Evidencias de la publicación</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

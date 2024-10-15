@@ -144,7 +144,7 @@
   color: #000;
   text-decoration: none;
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: 500;
   display: flex;
   align-items: center;
   width: 100%;
@@ -204,5 +204,21 @@
     left: 250px;
   }
 
-  
+  .btn-section{
+    flex-wrap: wrap;
+    
+  }
+  .filter-btn-cont{
+    width: 100%;
+    margin-left: 0px;
+  }
+  .filter-btn{
+    width: 100%;
+  }
+}
+
+/* LISTADO PUBLICACIONES */
+.filter-btn-cont{
+  display: flex;
+  gap: 1rem;
 }

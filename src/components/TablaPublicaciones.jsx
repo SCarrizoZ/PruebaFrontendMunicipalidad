@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
-
+import {format } from 'date-fns'
 import {Link} from 'react-router-dom';
 
-const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPage }) => {
+const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPage, filteredPublicaciones }) => {
   const [publicaciones, setPublicaciones] = useState([])
   const [nextPageUrl, setNextPageUrl] = useState(null)
   const [prevPageUrl, setPrevPageUrl] = useState(null)
@@ -31,6 +31,15 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
   }
 
   useEffect(() => {
+    if (filteredPublicaciones?.length > 0) {
+      setPublicaciones(filteredPublicaciones)
+
+    }else{
+      fetchPublicaciones("https://backend-dashboard-tau.vercel.app/publicaciones/")
+    }
+  }, [filteredPublicaciones])
+  useEffect(() => {
+    
     if (currentPage === 1) {
       fetchPublicaciones("https://backend-dashboard-tau.vercel.app/publicaciones/")
     } else {
@@ -80,7 +89,11 @@ const TablaPublicaciones = ({ currentPage, publicacionesPorPagina, setCurrentPag
               <TableCell>{pub.descripcion}</TableCell>
               <TableCell>{pub.situacion.nombre}</TableCell>
               <TableCell>{pub.categoria.nombre}</TableCell>
-              <TableCell>{new Date(pub.fecha_publicacion).toLocaleDateString()}</TableCell>
+              <TableCell>{
+                // i need this format "dd-MM-yyyy"
+                  format(new Date(pub.fecha_publicacion), "yyyy-MM-dd")
+              // new Date(pub.fecha_publicacion).toLocaleDateString()
+              }</TableCell>
               <TableCell>{pub.junta_vecinal.nombre_calle} {pub.junta_vecinal.numero_calle}</TableCell>
             </TableRow>
           ))}
