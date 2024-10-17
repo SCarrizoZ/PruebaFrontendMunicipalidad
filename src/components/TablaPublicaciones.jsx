@@ -91,7 +91,7 @@ const TablaPublicaciones = ({
               Array.from({ length: 6 }).map((_, index) => (
                 <TableCell key={index}>
                   <Skeleton 
-                    className="h-4 w-full"
+                    className="h-[2rem] w-full"
                   />
                 </TableCell>
               ))

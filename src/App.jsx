@@ -2,6 +2,7 @@ import PublicacionesListado from './components/pages/PublicacionesListado'
 import Dashboard from './components/pages/Dashboard'
 import Sidebar from './components/Sidebar'
 import DetallesPublicacion from './components/pages/DetallesPublicacion'  
+import Descargar from './components/pages/Descargar'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.css'
@@ -17,11 +18,12 @@ function App() {
         <Sidebar
           isOpened={isOpened}
         />
-        <div className="content">
+        <div className="content ">
           <Routes>
             <Route path="/" element={<PublicacionesListado isOpened={isOpened} setIsOpened={setIsOpened} />} />
             <Route path="/dashboard"  element={<Dashboard isOpened={isOpened} setIsOpened={setIsOpened} />}  />
             <Route path="/publicacion/:id" element={<DetallesPublicacion isOpened={isOpened} setIsOpened={setIsOpened} />} />
+            <Route path="/descargar" element={<Descargar isOpened={isOpened} setIsOpened={setIsOpened} />} />
           </Routes>
         </div>
       </Router>

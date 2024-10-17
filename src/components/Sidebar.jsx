@@ -1,10 +1,43 @@
-import React from 'react'
+import {useState} from 'react'
 import logo from '../assets/logotipo-muni.png'
 import { Link } from 'react-router-dom'
 const Sidebar = ({
   isOpened
 }) => {
-
+  const sections = [
+    {
+      title: "Dashboard",
+      icon: "bx bx-pie-chart",
+      link: "/dashboard"
+    },
+    {
+      title: "Publicaciones",
+      icon: "bx bx-file",
+      link: "/"
+    },
+    {
+      title: "Anuncios",
+      icon: "bx bx-file",
+      link: "/"
+    },
+    {
+      title: "Reportes",
+      icon: "bx bx-bar-chart-alt-2",
+      link: "/"
+    },
+    {
+      title: "Mapa",
+      icon: "bx bx-map-alt",
+      link: "/"
+    },
+    {
+      title: "Descargar",
+      icon: "bx bx-download",
+      link: "/descargar"
+    },
+  ]
+  // section state
+  const [selectedSection, setSelectedSection] = useState(sections[1].title)
   return (
     <nav className={`sidebar ${!isOpened ? "closed" : ""}`}>
       <header className="sidebar-header">
@@ -15,49 +48,19 @@ const Sidebar = ({
       </header>
       <div className="menu">
         <ul className="menu-list">
-          <li class="nav-link">
-            
-            <Link to="/dashboard">
-              <i class="bx bx-pie-chart icon"></i>
-              <span class="text nav-text">
-                Dashboard
-              </span>
-            </Link>
-          </li>
-          <li class="nav-link">
-            <Link to='/'>
-              <i class="bx bx-file icon"></i>
-              <span class="text nav-text">
-                Publicaciones
-              </span>
-            </Link>
-
-            
-          </li>
-          <li class="nav-link">
-            <a href="#">
-              <i class="bx bx-file icon"></i>
-              <span class="text nav-text">
-                Anuncios
-              </span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a href="#">
-              <i class="bx bx-bar-chart-alt-2 icon"></i>
-              <span class="text nav-text">
-                Reportes
-              </span>
-            </a>
-          </li>
-          <li class="nav-link">
-            <a href="#">
-              <i class="bx bx-map-alt icon"></i>
-              <span class="text nav-text">
-                Mapa
-              </span>
-            </a>
-          </li>
+          {
+            sections.map((section, index) => (
+              
+              <li key={index} className={`nav-link  ${selectedSection === section.title ? "active" : ""}`}>
+                <Link to={section.link} onClick={() => setSelectedSection(section.title)}>
+                  <i className={`${section.icon} icon`}></i>
+                  <span className="text nav-text">
+                    {section.title}
+                  </span>
+                </Link>
+              </li>
+            ))
+          }
 
 
         </ul>
@@ -74,6 +77,7 @@ const Sidebar = ({
           </li>
         </div>
       </div>
+      
     </nav>
   )
 }

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeftIcon, MapPinIcon, ImageIcon, FileIcon } from "lucide-react"
-
+import { Skeleton } from "@/components/ui/skeleton"
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -15,17 +15,14 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
   const [error, setError] = useState(null)
   const [publicacion, setPublicacion] = useState({})
   const url_local = import.meta.env.VITE_URL_PROD
-  const url = `${"https://backend-dashboard-tau.vercel.app/publicaciones/"}${id}`
+  const url = `${"https://proyecto-municipal-vercel-a4o9opiq6-scarrizozs-projects.vercel.app/api/v1/publicaciones/"}${id}/`
   const fetchPublicacion = (url) => {
     setLoading(true)
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.results)
-        console.log(data.results.id)
-        setPublicacion(data.results)
-        // setNextPageUrl(data.next)
-        // setPrevPageUrl(data.previous)
+        console.log(data)
+        setPublicacion(data)
         setLoading(false)
       })
       .catch(error => {
@@ -77,7 +74,11 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
               </Button>
             </div>
           </div>
-          <CardTitle className="text-2xl text-green-700">{publicacion?.titulo + ` (${publicacion?.id})`}</CardTitle>
+          <CardTitle className="text-2xl text-green-700">
+            {
+              loading ? <Skeleton className="h-8 w-64" /> : publicacion?.titulo
+            }
+          </CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
           {activeTab === 'info' && (
@@ -90,24 +91,56 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
                   <CardContent>
                     <dl className="grid grid-cols-1 gap-2 text-sm">
                       <div className="flex justify-between">
-                        <dt className="font-medium text-green-600">Categoría:</dt>
-                        <dd>Infraestructura</dd>
+                        <dt className="font-medium text-green-600">Categoría: </dt>
+                        <dd>
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : publicacion?.categoria?.nombre
+                          }
+                        </dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="font-medium text-green-600">Fecha de publicación:</dt>
-                        <dd>01/01/2024</dd>
+                        <dd>
+                          
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : new Date(publicacion.fecha_publicacion).toLocaleDateString('es-CL')
+
+                          }
+                        </dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="font-medium text-green-600">Junta Vecinal:</dt>
-                        <dd>Centro</dd>
+                        <dd>
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : publicacion?.junta_vecinal?.nombre_calle
+                          }
+                        </dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="font-medium text-green-600">Estado:</dt>
-                        <dd><Badge className="bg-green-100 text-green-800">En progreso</Badge></dd>
+                        <dd>
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : (<Badge className="bg-green-100 text-green-800">
+                              {publicacion?.situacion?.nombre}
+                              </Badge>)
+                          }
+                        </dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="font-medium text-green-600">Responsable:</dt>
-                        <dd>Juan Pérez</dd>
+                        <dd>
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : "Administrador Municipal"
+                          }
+                        </dd>
+                      </div>
+                      <div className="flex justify-between">
+                        <dt className="font-medium text-green-600">Departamento:</dt>
+                        <dd>
+                          {
+                            loading ? <Skeleton className="h-4 w-24" /> : publicacion?.departamento?.nombre
+                          }
+                        </dd>
                       </div>
                     </dl>
                   </CardContent>
@@ -144,18 +177,18 @@ const DetallesPublicacion = ({ isOpened, setIsOpened }) => {
               </div>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-green-700">Comentarios</CardTitle>
+                  <CardTitle className="text-green-700">Respuestas Municipales</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
-                    <li className="bg-green-50 p-3 rounded">
-                      <p className="text-sm text-green-600 mb-1">María González - 15/01/2024</p>
-                      <p>Excelente iniciativa para nuestra comunidad.</p>
-                    </li>
-                    <li className="bg-green-50 p-3 rounded">
-                      <p className="text-sm text-green-600 mb-1">Carlos Rodríguez - 16/01/2024</p>
-                      <p>¿Cuándo se espera que comience la obra?</p>
-                    </li>
+                    {/* static skeleton use skeleton */}
+                    {
+                      [1, 2, 3].map((item) => (
+                        <li key={item} className="flex items-center space-x-4">
+                          <Skeleton className="h-[50px] w-full " />
+                        </li>
+                      ))
+                    }
                   </ul>
                 </CardContent>
               </Card>
