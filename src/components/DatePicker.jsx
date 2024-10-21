@@ -67,6 +67,7 @@ const DatePicker = ({selectedDate, setSelectedDate, setIsValid, isValid}) => {
             selected={selectedDate}
             onSelect={handleDateSelect}
             initialFocus
+            locale = {es}
           />
         </PopoverContent>
       </Popover>
